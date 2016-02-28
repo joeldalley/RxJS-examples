@@ -1,0 +1,26 @@
+{
+  "name": "rxjs-examples",
+  "version": "1.0.0",
+  "description": "Examples of using RxJS.",
+  "main": "ex-1.js",
+  "dependencies": {
+    "rx": "^4.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeldalley/RxJS-examples.git"
+  },
+  "keywords": [
+    "RxJS"
+  ],
+  "author": "Joel Dalley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeldalley/RxJS-examples/issues"
+  },
+  "homepage": "https://github.com/joeldalley/RxJS-examples#readme"
+}
