@@ -25,7 +25,6 @@ function getStream() {
       .interval(300)
       .take(data.length)
       .map(x => data[x]);
-
 }
 
 function filteredStream(stream, filter) {
