@@ -2,6 +2,7 @@ const Rx = require("rx");
 
 function input() {
     return [
+      {price: 17.50},
       {price: 25},
       {price: 45},
       {price: 1},
@@ -11,26 +12,38 @@ function input() {
     ];
 }
 
-function arrayCase() {
+function getArray() {
     return input()
       .filter(quote => quote.price > 30)
       .map(quote => quote.price);
 }
 
-function streamCase() {
+function getStream() {
     const data = input();
 
     return Rx.Observable
-      .interval(200)
+      .interval(300)
       .take(data.length)
-      .map(x => data[x])
-      .filter(quote => quote.price > 30)
-      .map(quote => quote.price);
+      .map(x => data[x]);
+
 }
 
-console.log("Array Case:");
-arrayCase().forEach(price => console.log(`Prices higher than $30: ${price}`));
+function filteredStream(stream, filter) {
+  return stream
+    .filter(filter)
+    .map(quote => quote.price);
+}
+
+console.log("Array:");
+getArray().forEach(price => console.log(`Prices higher than $30: ${price}`));
 console.log("");
 
-console.log("Stream Case:");
-streamCase().subscribe(price => console.log(`Prices higher than $30: ${price}`));
+const stream = getStream();
+
+console.log("Streams:");
+filteredStream(stream, quote => quote.price <= 30)
+  .subscribe(price => console.log(`Prices at $30 or lower: ${price}`));
+
+filteredStream(stream, quote => quote.price > 30)
+  .subscribe(price => console.log(`Prices higher than $30: ${price}`));
+
