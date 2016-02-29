@@ -2,10 +2,10 @@ const Rx = require("rx");
 const rp = require("request-promise");
 
 const rpOpts = {
-  headers: {'User-Agent': 'Request-Promise'}
+  headers: {"User-Agent": "Request-Promise"}
 };
 
-const urlStream = Rx.Observable.just('https://api.github.com/users');
+const urlStream = Rx.Observable.just("https://api.github.com/users");
 
 function responseSubscriber(responseStream) {
   responseStream.subscribe(response => {
