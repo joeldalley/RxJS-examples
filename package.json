@@ -4,6 +4,7 @@
   "description": "Examples of using RxJS.",
   "main": "ex-1.js",
   "dependencies": {
+    "request-promise": "^2.0.1",
     "rx": "^4.0.8"
   },
   "devDependencies": {},
