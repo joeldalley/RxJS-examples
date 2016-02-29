@@ -7,18 +7,21 @@ const rpOpts = {
 
 const urlStream = Rx.Observable.just('https://api.github.com/users');
 
+function responseSubscriber(responseStream) {
+  responseStream.subscribe(response => {
+      const users = JSON.parse(response);
+      console.log(users.map(_ => _["login"]).sort().join(" "));
+  });
+}
+
+
 { // Without flatMap.
   const responseMetaStream = urlStream.map(uri => {
     const reqOpts = Object.assign(rpOpts, {uri: uri});
     return Rx.Observable.fromPromise(rp(reqOpts));
   });
 
-  responseMetaStream.subscribe(responseStream => {
-    responseStream.subscribe(response => {
-        const users = JSON.parse(response);
-        console.log(users.map(_ => _["login"]).join(" "));
-    });
-  });
+  responseMetaStream.subscribe(responseSubscriber);
 }
 
 { // With flatMap -- no unzippering required.
@@ -27,8 +30,5 @@ const urlStream = Rx.Observable.just('https://api.github.com/users');
     return Rx.Observable.fromPromise(rp(reqOpts));
   });
 
-  responseStream.subscribe(response => {
-    const users = JSON.parse(response);
-    console.log(users.map(_ => _["login"]).join(" "));
-  });
+  responseSubscriber(responseStream);
 }
