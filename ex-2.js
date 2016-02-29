@@ -21,7 +21,7 @@ const urlStream = Rx.Observable.just('https://api.github.com/users');
   });
 }
 
-{ // With flapMap -- No unzippering required.
+{ // With flatMap -- no unzippering required.
   const responseStream = urlStream.flatMap(uri => {
     const reqOpts = Object.assign(rpOpts, {uri: uri});
     return Rx.Observable.fromPromise(rp(reqOpts));
