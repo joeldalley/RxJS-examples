@@ -25,7 +25,8 @@
       "js"
     ],
     "unmockedModulePathPatterns": [
-      "./node_modules/request-promise/"
+      "./node_modules/request-promise/",
+      "./node_modules/rx/"
     ]
   },
   "repository": {
