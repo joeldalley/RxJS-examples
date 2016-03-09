@@ -10,7 +10,7 @@ const urlStream = Observable.just("https://api.github.com/users");
 function responseSubscriber(responseStream) {
   responseStream.subscribe(response => {
       const users = JSON.parse(response);
-      console.log(users.map(_ => _["login"]).sort().join(" "));
+      return users.map(_ => _["login"]).sort().join(" ");
   });
 }
 
@@ -24,7 +24,7 @@ export function subscriber1() {
     return Observable.fromPromise(rp(reqOpts));
   });
 
-  responseMetaStream.subscribe(responseSubscriber);
+  return responseMetaStream.subscribe(responseSubscriber);
 }
 
 export function subscriber2() { 
@@ -33,5 +33,5 @@ export function subscriber2() {
     return Observable.fromPromise(rp(reqOpts));
   });
 
-  responseSubscriber(responseStream);
+  return responseSubscriber(responseStream);
 }

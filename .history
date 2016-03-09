@@ -3,4 +3,4 @@ npm install --save-dev babel-jest babel-polyfill
 sudo npm install babel-preset-es2015 -g
 npm install --save-dev babel-cli
 npm install babel-preset-es2015 --save-dev
-
+npm install --save-dev babel-plugin-transform-async-to-generator
